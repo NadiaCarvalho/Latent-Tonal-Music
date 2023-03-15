@@ -16,7 +16,7 @@ import tensorflow as tf
 
 from ..utils import run_name_to_dict
 from .circular_statistics import circ_cor
-from .models.vae import VAE
+from .vae import VAE
 
 np.random.seed(42)  # keras seed fixing
 tf.random.set_seed(42)  # tensorflow seed fixing
