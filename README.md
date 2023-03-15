@@ -1,2 +1,8 @@
 # Latent-Tonal-Music
 Exploring Latent Spaces of Tonal Music using Variational Autoencoders
+
+Repository for the AIMC2023 paper <b>Exploring Latent Spaces of Tonal Music using Variational Autoencoders</b>
+
+Variational Autoencoders (VAEs) have proven to be effective models for producing latent representations of cognitive and semantic value. We assess the degree to which VAEs trained on a prototypical tonal music corpus of 371 Bach's chorales define latent spaces representative of the cognitive distances from musical pitch. In detail, we compare the latent space of different VAE corpus encodings — Piano roll, MIDI, ABC, Tonnetz, DFT of pitch and pitch class distributions — in providing a pitch space for key relations that align with cognitive distances. We evaluate the model performance of these encodings, using objective metrics, such as Accuracy, MSE and KL-divergence, and computational performance times. An objective evaluation of all 12 major or minor transpositions per piece is adopted to quantify 1)  intra- and inter-segment distances per key and  2) the key distances. Our results show that VAE latent spaces are aligned with a common-tone space where overlapping objects within a key are fuzzy clusters, which impose a well-defined order of structural significance or stability — i.e., a tonal hierarchy. Tonal hierarchies of different keys can be used to measure key distances and the relationships of their in-key components at multiple hierarchies (e.g., notes and chords). The implementation of our VAE and the encodings framework are made available online.
+
+keywords: Symbolic Music Encodings, Deep Learning, Variational Auto-Encoders, Latent-Space Representations, Tonal Music
