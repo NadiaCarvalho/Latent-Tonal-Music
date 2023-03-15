@@ -1,6 +1,6 @@
 """Calls Imports"""
 
-from .train import Train
-from .generator_vae import GeneratorVAE
-from .data_loader import MusicDatasetOneFile
+from harmrep.model_train.train import Train
+from harmrep.model_train.generator_vae import GeneratorVAE
+from harmrep.model_train.data_loader import MusicDatasetOneFile
 
