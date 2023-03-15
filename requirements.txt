@@ -1,0 +1,5 @@
+music21
+numpy
+pandas
+progressbar2
+scikit-learn
