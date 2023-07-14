@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Latent Spaces Encondings</title>
+        <link rel="stylesheet" href="./style.css">
+        <link rel="icon" href="./favicon.ico" type="image/x-icon">
+        <script src="http://www.verovio.org/javascript/latest/verovio-toolkit-wasm.js" defer></script>
+        <script src="/node_modules/music21j/releases/music21.debug.js" defer></script>
+        <script src="https://www.midijs.net/lib/midi.js"></script>
+    </head>
+    <body>
+        <main>
+            <h1>Encoding Examples for "Exploring Latent Spaces of Tonal Music using Variational Autoencoders"</h1>
+            <p>Here you can listen and explore to the encoding examples for the paper "Exploring Latent Spaces of Tonal Music using Variational Autoencoders".</p>
+            <p>For more information, please visit the
+                <a href="https://github.com/NadiaCarvalho/Latent-Tonal-Music">project page</a>
+                or the
+                <a href="">paper</a>.</p>
+            <br>
+
+            <h2>Encoding Examples</h2>
+
+            <input type="file" onchange="showFile(this)">
+            <button id="playMIDI" disabled>Play</button>
+            <button id="pauseMIDI" disabled>Pause</button>
+
+            <div id="notation"></div>
+            <div id="encoding"></div>
+        </main>
+        <script src="index.js"></script>
+    </body>
+</html>

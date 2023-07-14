@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "music21j": "^0.13.6"
+  }
+}
