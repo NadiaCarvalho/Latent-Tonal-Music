@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/Latent-Tonal-Music/static/css/main.073c9b0a.css",
+    "main.js": "/Latent-Tonal-Music/static/js/main.df2a2730.js",
+    "static/js/787.7088f918.chunk.js": "/Latent-Tonal-Music/static/js/787.7088f918.chunk.js",
+    "static/media/logo.svg": "/Latent-Tonal-Music/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/Latent-Tonal-Music/index.html",
+    "main.073c9b0a.css.map": "/Latent-Tonal-Music/static/css/main.073c9b0a.css.map",
+    "main.df2a2730.js.map": "/Latent-Tonal-Music/static/js/main.df2a2730.js.map",
+    "787.7088f918.chunk.js.map": "/Latent-Tonal-Music/static/js/787.7088f918.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.df2a2730.js"
+  ]
+}
