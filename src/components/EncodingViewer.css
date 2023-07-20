@@ -1,0 +1,25 @@
+g.note.playing {
+    fill: crimson;
+  }
+
+  .row {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .cell {
+    border: .5px dashed gray;
+    width: 1em;
+    height: 1em;
+  }
+
+  .cell.active {
+    background-color: crimson;
+  }
+
+  .EncodingViewer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
