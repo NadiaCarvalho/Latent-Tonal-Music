@@ -1,0 +1,138 @@
+<html lang="en">
+<head>
+ <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+ <!-- midi.js package -->
+<script src="../build/music21.debug.js" type="application/javascript"></script>
+
+ <link rel="stylesheet" href="../css/m21.css" type="text/css" />
+ <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Open+Sans:300italic,400italic,700italic,400,300,700" type="text/css" />
+
+</head>
+<body>
+<h1>Click me to play!</h1>
+<div id="dragContent">
+	<div id="themeDiv"></div>
+	<div id="dropDiv" height="800" width="1200" style="border: 2px dashed black">
+		<h1>Create an 8-measure piece by dropping fragments here! <br/>Go for a smooth pattern. Then click here to play your score.</h1>
+		<button onclick="clearScore()">Clear</button> ... <button onclick="undoAdd()">Undo</button><br></br>
+		<div style="text-align: left">
+			<div id="dropSvg" class='streamHolding' height=200 width=1000></div>
+		</div>
+	</div>
+</div>
+<h2>If you've done that well, hit clear and try to create a 16-measure piece with these fragments.</h2>
+<script type="text/javascript">
+
+function renderThemes() {
+    const themes = [
+        'c4 e g g',
+        "c'4 g2 e4",
+        'c2 r',
+        "c'4 c c' r",
+        "e4 g c' c'",
+        'g4 e8 c g4 c',
+        "c2. c'4",
+        'c4 c e8 f g4',
+        "c'4. e'8 c'4 g",
+        "d'#4 f b8 f4.",
+        'c4. e8 c4. g8',
+        "c8 c e e g g c'4",
+        "c4. g8 c'4 e'",
+    ];
+    const themeDivs = [];
+    const r = new music21.vfShow.Renderer(); // should be static method;
+
+	let dragged;
+
+    for (let i = 0; i < themes.length; i++) {
+        const thisTheme = themes[i];
+        const myTNStream = music21.tinyNotation.TinyNotation(thisTheme);
+        const myStream = new music21.stream.Measure();
+        myStream.autoBeam = true;
+        myStream.elements = myTNStream.getElementsByClass('Measure').get(0).elements;
+        myStream.timeSignature = new music21.meter.TimeSignature('4/4');
+        const $nc = myStream.createPlayableDOM();
+        $nc.data('stream', myStream);
+        const $themeDiv = $('#themeDiv');
+		$themeDiv.append($nc);
+		$nc.attr('draggable', 'true');
+		$nc.on('dragstart', e => { dragged = e.target; });
+        // // here is where we create something!
+        // $nc
+        //     .draggable({
+        //         containment: 'body',
+        //         stack: '#themeDiv .streamHolding',
+        //         cursor: 'move',
+        //         revert: true,
+        //     })
+        //     .data('stream', myStream);
+        $nc[0].ondblclick = $nc[0].onclick; // not working right now...
+        $nc[0].onclick = undefined;
+        themeDivs.push($nc);
+        r.removeFormatterInformation(myStream, true); // recursive.
+
+        // if (i % 4 === 3) {
+        //     $themeDiv.append($('<br/>'));
+        //     // alert(nc);
+        // }
+    }
+    $('body').append($('<br/>'));
+    $('html').on('drop', e => console.log(e));
+    $('#dropDiv').on('drop', e => {
+		e.preventDefault();
+		e.stopPropagation();
+    	handleThemeDrop($(dragged).data('stream'));
+	}).on("dragover", e => {
+    	// must cancel dragover even or drop never occurs.
+		e.preventDefault();
+    	e.stopPropagation();
+	});
+	// {
+    //     accept: '#themeDiv .streamHolding',
+    //     hoverClass: 'hovered',
+    //     drop: handleThemeDrop,
+    // }
+    // themeDivs[0].style.display = 'none';
+}
+
+function handleThemeDrop(containedStream) {
+    const containedStreamCopy = containedStream.clone(true);
+
+    allStream.append(containedStreamCopy);
+    allStreamScore.resetRenderOptions(true); // recursive
+    for (let i = 0; i < allStream.length; i++) {
+        if (i % 4 === 3) {
+            allStream.get(i).renderOptions.rightBarline = 'double';
+        }
+    }
+    allStreamScore.replaceDOM($('#dropDiv .streamHolding'));
+    // alert(allStream.hi);
+}
+
+function clearScore() {
+    allStream.elements = [];
+    const $newSVG = allStreamScore.createPlayableDOM();
+    $('#dropDiv .streamHolding').replaceWith($newSVG[0]);
+}
+
+function undoAdd() {
+    allStream.elements = allStream.elements.slice(0, allStream.length - 1);
+    const $newSVG = allStreamScore.createPlayableDOM();
+    $('#dropDiv .streamHolding').replaceWith($newSVG[0]);
+}
+
+let allStream;
+
+window.music21 = music21;
+renderThemes();
+allStreamScore = new music21.stream.Score();
+allStreamScore.renderOptions.overriddenWidth = 600;
+allStream = new music21.stream.Part();
+allStream.renderOptions.overriddenWidth = 600;
+allStreamScore.append(allStream);
+const $newDOM = allStreamScore.createPlayableDOM();
+$('#dropSvg').replaceWith($newDOM);
+
+</script>
+</body>
+</html>

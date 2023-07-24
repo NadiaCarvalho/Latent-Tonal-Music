@@ -1,0 +1,116 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>Music21j Color Picker</title>
+  <script src="../build/music21.debug.js"></script>
+</head>
+<body>
+<h3>Click a note, then click a color to label it.</h3>
+<div id="SVGDiv">DOM goes here...<br/></div>
+
+<script>
+function getColorDOM(s, width, height) {
+    const $d = $('<div/>')
+        .css('text-align', 'left')
+        .css('position', 'relative');
+    const $buttonDiv = getColorToolbar(s);
+    $d.append($buttonDiv);
+    $d.append($("<br clear='all'/>"));
+    s.renderOptions.events.click = e => {
+        const SVGElement = e.currentTarget;
+        const [clickedDiatonicNoteNum, foundNote] = s.findNoteForClick(
+            SVGElement,
+            e
+        );
+        if (foundNote === undefined) {
+            console.log('No note found');
+        } else {
+            s.activeNote = foundNote;
+        }
+    };
+    s.appendNewDOM($d, width, height); // var can =
+    return $d;
+}
+
+function getColorToolbar(s, $siblingDOM) {
+    const addColor = (newColor, clickEvent) => {
+        /*
+         * To be called on a button...
+         */
+        let $useDOM = $siblingDOM;
+        if ($useDOM === undefined) {
+            let $searchParent = $(clickEvent.target).parent();
+            while (
+                $searchParent !== undefined &&
+                ($useDOM === undefined || $useDOM[0] === undefined)
+            ) {
+                $useDOM = $searchParent.find('.streamHolding');
+                $searchParent = $searchParent.parent();
+            }
+            if ($useDOM[0] === undefined) {
+                console.log('Could not find a SVG...');
+                return;
+            }
+        }
+        if (s.activeNote !== undefined) {
+            const n = s.activeNote;
+            n.noteheadColor = newColor;
+            /* console.log(n.pitch.name); */
+            const $newSvg = s.redrawDOM($useDOM[0]);
+            if (s.changedCallbackFunction !== undefined) {
+                s.changedCallbackFunction({ svg: $newSvg });
+            }
+        }
+    };
+
+    const $buttonDiv = $('<div/>').attr(
+        'class',
+        'accidentalToolbar scoreToolbar'
+    );
+    const info = [
+        ['black', 'white', 'harmonic'],
+        ['green', 'white', 'passing'],
+        ['aqua', 'black', 'neighbor'],
+        ['red', 'black', 'other'],
+    ];
+
+    for (let i = 0; i < info.length; i++) {
+        const [thisColor, textColor, thisFunction] = info[i];
+        const $b = $(
+            `<button style='background-color: ${thisColor}; color: ${textColor}'>${thisFunction}</button>`
+        );
+        $b.click(e => addColor(thisColor, e));
+        $buttonDiv.append($b);
+    }
+    return $buttonDiv;
+}
+
+s = undefined;
+
+    const k = new music21.key.Key('D');
+
+    s = new music21.stream.Measure();
+    s.keySignature = k;
+    s.timeSignature = new music21.meter.TimeSignature('4/4');
+    const n = new music21.note.Note('G4');
+    n.duration.type = 'half';
+    s.append(n);
+    const n2 = new music21.note.Note('A4');
+    s.append(n2);
+    const n3 = new music21.note.Note('B4');
+    s.append(n3);
+    s.autoBeam = false;
+    const $d = getColorDOM(s);
+    $('#SVGDiv').append($d);
+
+    const sChord = new music21.stream.Measure();
+    sChord.timeSignature = new music21.meter.TimeSignature('4/4');
+    const ch = new music21.roman.RomanNumeral('IV', k);
+    ch.duration.type = 'whole';
+    sChord.keySignature = k;
+    sChord.append(ch);
+    sChord.appendNewDOM($('#SVGDiv'));
+</script>
+
+</body>
+</html>

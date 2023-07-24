@@ -1,0 +1,19 @@
+.loadingSoundfont {
+    top: 40px;
+    background-color: #99ff99;
+    color: black;
+    font-weight: normal;
+    position: fixed;
+    right: 30px;
+    width: 170px;
+    font-size: 10px;
+    opacity: 0.7;
+    border-radius: 15px;
+    box-shadow: 0 0 19px #999;
+    padding: 10px 10px 10px 10px;
+    z-index: 20;
+}
+
+.streamHolding {
+    display: inline-block;
+}
