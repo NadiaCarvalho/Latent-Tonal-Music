@@ -1,7 +1,6 @@
 import EncodingViewer from './components/EncodingViewer';
 import './App.css';
 
-
 function App() {
   return (
     <div className="App">

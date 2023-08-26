@@ -1,25 +1,68 @@
-g.note.playing {
+  g.note.playing {
     fill: crimson;
   }
 
-  .row {
+  .row, #index, #tonnetzIndicator, #midiINTs {
     display: flex;
     flex-direction: row;
   }
 
-  .cell {
+  #midiINTs {
+    flex-wrap: wrap;
+  }
+
+  .cell, .cellDFT, .indexcell, .indexcellDFT, .tonnetzIndicatorCell, .cellMIDILike {
     border: .5px dashed gray;
     width: 1em;
     height: 1em;
   }
 
-  .cell.active {
+  .cellDFT, .indexcellDFT, .cellMIDILike {
+    width: 2em !important;
+  }
+
+  .indexcell, .indexcellDFT, .tonnetzIndicatorCell {
+    border: .5px solid transparent !important;
+  }
+
+  .indexcell > span, .indexcellDFT > span, .tonnetzIndicatorCell > span {
+    font-style: italic;
+    font-size: 0.5em;
+    color: gray;
+  }
+
+  .tonnetzIndicatorCell > span {
+    color: blue !important;
+  }
+
+  .cellDFT > span {
+    font-size: x-small;
+  }
+
+  .cell.active, .cellDFT.active, .cellMIDILike.active {
     background-color: crimson;
   }
 
+  .continuation.active  {
+    background-color: springgreen;
+  }
+
   .EncodingViewer {
+    display: block;
+  }
+
+  #encodingContent {
+    display: flex;
+    margin: 0 5%;
+  }
+
+  #pianorollEncoding, .Pianoroll, #dftEncoding, .DFT, #tonnetzEncoding, .Tonnetz, #midilikeEncoding, .MIDILike {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap-reverse;
+
+    overflow-x: scroll;
+    overflow-y: hidden;
   }
