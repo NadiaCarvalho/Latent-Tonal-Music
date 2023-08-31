@@ -22,7 +22,6 @@ class MIDILike extends React.Component {
             processedNotes: null,
             processedEvents: null,
             totalDuration: null,
-            startNote: 0,
         };
 
         console.log("MIDILike has loaded!");

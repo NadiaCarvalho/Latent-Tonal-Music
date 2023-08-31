@@ -11,6 +11,12 @@
     flex-wrap: wrap;
   }
 
+  #abcString {
+    margin-top: 1em;
+    display: block;
+    text-align: left;
+  }
+
   .cell, .cellDFT, .indexcell, .indexcellDFT, .tonnetzIndicatorCell, .cellMIDILike {
     border: .5px dashed gray;
     width: 1em;
@@ -56,7 +62,7 @@
     margin: 0 5%;
   }
 
-  #pianorollEncoding, .Pianoroll, #dftEncoding, .DFT, #tonnetzEncoding, .Tonnetz, #midilikeEncoding, .MIDILike {
+  #pianorollEncoding, .Pianoroll, #dftEncoding, .DFT, #tonnetzEncoding, .Tonnetz, #midilikeEncoding, .MIDILike, #abcEncoding, .ABC {
     display: flex;
     flex-direction: column;
     align-items: center;
