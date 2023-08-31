@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Latent-Tonal-Music/static/css/main.28bcc964.css",
-    "main.js": "/Latent-Tonal-Music/static/js/main.2187347b.js",
+    "main.css": "/Latent-Tonal-Music/static/css/main.fb332863.css",
+    "main.js": "/Latent-Tonal-Music/static/js/main.fafa07f1.js",
     "static/js/651.b25bd5ae.chunk.js": "/Latent-Tonal-Music/static/js/651.b25bd5ae.chunk.js",
     "index.html": "/Latent-Tonal-Music/index.html",
-    "main.28bcc964.css.map": "/Latent-Tonal-Music/static/css/main.28bcc964.css.map",
-    "main.2187347b.js.map": "/Latent-Tonal-Music/static/js/main.2187347b.js.map",
+    "main.fb332863.css.map": "/Latent-Tonal-Music/static/css/main.fb332863.css.map",
+    "main.fafa07f1.js.map": "/Latent-Tonal-Music/static/js/main.fafa07f1.js.map",
     "651.b25bd5ae.chunk.js.map": "/Latent-Tonal-Music/static/js/651.b25bd5ae.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.28bcc964.css",
-    "static/js/main.2187347b.js"
+    "static/css/main.fb332863.css",
+    "static/js/main.fafa07f1.js"
   ]
 }
