@@ -95,7 +95,7 @@ class Train:
                 last_epoch = int(list(reader)[-1][0].split(',')[0])
                 file.close()
 
-            models = glob.glob(os.sep.join([output_folder, '*.h5']))
+            models = glob.glob(os.sep.join([output_folder, 'model-*.h5*']))
             model_path = list(
                 filter(lambda name: f'model-{last_epoch+1:03d}' in name, models))
 
@@ -124,8 +124,11 @@ class Train:
             [self.output_dir, self.filename, 'logs', f'run_{run_name}'])
         os.makedirs(logdir, exist_ok=True)
 
+        # Use .weights.h5 if it's a VAE (since save_weights_only will be True)
+        extension = '.weights.h5' if model_type == 'vae' else '.h5'
+
         filepath_save = os.path.abspath(
-            output_folder + '/model-{epoch:03d}-{loss:.4f}-{val_loss:.4f}.h5')
+            output_folder + f'/model-{{epoch:03d}}-{{loss:.4f}}-{{val_loss:.4f}}{extension}')
 
         save_weights_only = False
         if model_type == 'vae':
@@ -135,7 +138,7 @@ class Train:
             filepath_save,
             save_weights_only=save_weights_only,
             save_freq='epoch',
-            monitor='loss',
+            monitor='val_loss',
             verbose=2,
             save_best_only=False,
             mode='min'
